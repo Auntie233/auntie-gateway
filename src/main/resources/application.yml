@@ -3,23 +3,11 @@ server:
 spring:
   application:
     name: gateway
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          lower-case-service-id: true
-      routes:
-        - id: customer
-#          uri: lb://customer-service
-          uri: https://www.baidu.com
-          predicates:
-            - Path=/customer/**
-        - id: product
-          uri: lb://product-service
-          predicates:
-            - Path=/product/**
-          filter:
-            - RewritePath=/product/(?<segment>.*), /$\{segment}
+  redis:
+    host: 10.6.1.105
+    port: 6379
+    database: 0
+    password: Regan888
 eureka:
   client:
     service-url:

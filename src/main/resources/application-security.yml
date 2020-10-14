@@ -1,0 +1,12 @@
+auntie:
+  security:
+    token:
+      store:
+        type: resRedis
+    auth:
+      urlEnabled: true
+      httpUrls: >
+        /user/login
+    ignore:
+      urls: >
+        /user/login

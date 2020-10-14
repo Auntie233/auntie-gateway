@@ -1,0 +1,27 @@
+zuul:
+  host:
+    max-per-route-connections: 1000
+    max-total-connections: 1000
+  ribbon-isolation-strategy: thread
+  ribbon:
+    eager-load:
+      enabled: true
+    threadPool:
+      useSeparateThreadPools: true
+      threadPoolKeyPrefix: api-gateway
+  #关闭重试
+  retryable: false
+  #/oauth/token需要请求头处理
+  sensitive-headers:
+  ignored-headers: Access-Control-Allow-Credentials,Access-Control-Allow-Origin,Access-Control-Allow-Methods
+  add-host-header: true
+  routes:
+    customer:
+      service-id: customer-service
+      path: Path=/customer/**
+      strip-prefix: true
+    product:
+      service-id: product-service
+      path: Path=/product/**
+      strip-prefix: true
+
